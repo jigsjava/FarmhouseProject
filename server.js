@@ -16,18 +16,23 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const db = require("./app/models");
-db.mongoose.set('debug', true);
+db.mongoose.set('debug', false);
+
+const mongooseOptions = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  autoIndex: true,   // Automatically build indexes
+  autoCreate: true,  // Automatically create collections
+};
 
 try {
- db.mongoose.connect(db.url, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
+ db.mongoose.connect(db.url,mongooseOptions);
   console.log("Connected to the database!");
 } catch (err) {
   console.error("Cannot connect to the database!", err);
   process.exit();
 }
+
 
 require("./app/routes/auth.routes")(app);
 require("./app/routes/farmhouse.routes")(app);
