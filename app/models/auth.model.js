@@ -4,42 +4,50 @@ const { Schema } = require("mongoose");
 
 module.exports = mongoose => {
     var userschema = mongoose.Schema(
-        {
-            name: {
-                type: String,
-                required: true,
-                select: true
-            },
-            email: {
-                type: String,
-                required: true,
-                select: true
-            },
-            password: {
-                type: String,
-                required: true,
-                select: true
-            },
-            mobile: {
-                type: String,
-                required: true,
-                select: true
-            },
-            role_id: {
-                type: Schema.Types.ObjectId,
-                ref : "role",
-            },
-            otp: {
-                type: Number,
-                required: true,
-                select: true
-            },
-            emailVerify:{
-                type:Boolean,
-                select:true
-            }
+      {
+        name: {
+          type: String,
+          required: true,
+          select: true,
         },
-        { timestamps: true }
+        email: {
+          type: String,
+          required: true,
+          select: true,
+        },
+        password: {
+          type: String,
+          required: true,
+          select: true,
+        },
+        mobile: {
+          type: String,
+          required: true,
+          select: true,
+        },
+        role_id: {
+          type: Schema.Types.ObjectId,
+          ref: "role",
+        },
+        otp: {
+          type: Number,
+          required: true,
+          select: true,
+        },
+        emailVerify: {
+          type: Boolean,
+          select: true,
+        },
+        isDeleted: { 
+            type: Boolean, 
+            default: false 
+        },
+        deletedAt: { 
+            type: Date, 
+            default: null 
+        },
+      },
+      { timestamps: true }
     );
 
     userschema.method("toJSON", function() {

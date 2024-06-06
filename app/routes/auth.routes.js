@@ -11,6 +11,7 @@ module.exports = app => {
     authrouter.post("/forgotpass", auth.forgotpassword);
     authrouter.post("/setpass",userValidation.newPasswordValidation, auth.setpassword);
     authrouter.get("/getrole",auth.getRole);
+    authrouter.delete("/:userId",auth.deleteUser);
     // router.get("/pagination", auth.pagination);
     // router.get('/getmyUser', auth.getmyUser);
 
