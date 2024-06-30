@@ -20,6 +20,7 @@ exports.imageUpload = async (files, keyPrefix, type = 'IMAGE') => {
 		const images = files;
 		const imageURLs = [];
 
+		// ===No image ===
 		if (!images || images.length === 0) {
 			return {
 				success: false,
